@@ -1,7 +1,7 @@
 const data = require('../data/zoo_data');
 
 const countAnimals = (animal) => {
-  // seu código aqui
+  data.species.reduce((acumulador, acc) => acumulador = );
 };
 
 module.exports = countAnimals;
