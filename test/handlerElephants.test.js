@@ -18,6 +18,6 @@ describe('Testes da função HandlerElephants', () => {
   });
 
   it('Deve retornar uma mensagem de erro caso um parâmetro seja inválido', () => {
-    expect(handlerElephants(123)).toBe('Parâmetro inválido, é necessário uma string');
+    expect(handlerElephants(1234)).toBe('Parâmetro inválido, é necessário uma string');
   });
 });
