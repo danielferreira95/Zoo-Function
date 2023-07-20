@@ -20,7 +20,7 @@ const calculateEntry = (entrants) => {
     const pessoas = countEntrants(entrants);
     const chaves = Object.keys(pessoas);
     const total = chaves
-      .reduce((acumulador, indice) => acumulador + pessoas[indice] * data.prices[indice], 0);
+      .reduce((acumulador, chave) => acumulador + pessoas[chave] * data.prices[chave], 0);
     return total;
   } return 0;
 };
