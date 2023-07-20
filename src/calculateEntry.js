@@ -1,28 +1,19 @@
 const data = require('../data/zoo_data');
 
-const countEntrants = (entrants) => {
-  const filtrarCrianca = (entrant) => entrant.age < 18;
-  const contaCrianca = entrants.filter(filtrarCrianca).length;
-  const filtrarAdulto = (entrant) => entrant.age >= 18 && entrant.age < 50;
-  const contaAdulto = entrants.filter(filtrarAdulto).length;
-  const filtrarSenhor = (entrant) => entrant.age >= 50;
-  const contaSenhor = entrants.filter(filtrarSenhor).length;
-  const obj = (adulto, crianca, senhor) => ({
-    adulto,
-    crianca,
-    senhor,
-  });
-  return obj(contaAdulto, contaCrianca, contaSenhor);
-};
+function countEntrants(entrants) {
+  const child = entrants.filter((person) => person.age < 18).length;
+  const adult = entrants.filter((person) => person.age >= 18 && person.age < 50).length;
+  const senior = entrants.filter((person) => person.age >= 50).length;
+  return { child, adult, senior };
+}
 
-const calculateEntry = (entrants) => {
-  if (entrants !== undefined && entrants.length !== undefined) {
-    const pessoas = countEntrants(entrants);
-    const chaves = Object.keys(pessoas);
-    const total = chaves
-      .reduce((acumulador, chave) => acumulador + pessoas[chave] * data.prices[chave], 0);
-    return total;
-  } return 0;
-};
+function calculateEntry(entrants) {
+  if (!entrants || Object.values(entrants).length === 0) return 0;
+  const numeroVisitante = countEntrants(entrants);
+  const numeroChild = numeroVisitante.child * data.prices.child;
+  const numeroAdult = numeroVisitante.adult * data.prices.adult;
+  const numeroSenior = numeroVisitante.senior * data.prices.senior;
+  return numeroChild + numeroAdult + numeroSenior;
+}
 
 module.exports = { calculateEntry, countEntrants };
